@@ -1,0 +1,46 @@
+spring:
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+  banner:
+    location: classpath:/banner/banner.txt
+  datasource:
+    url: jdbc:mysql://localhost:3306/money
+    username: root
+    password: money123!
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: true
+      connection-timeout: 5000
+      validation-timeout: 1000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      max-lifetime: 180000
+      idle-timeout: 60000
+      leak-detection-threshold: 60000 # 커넥션에 누수가 발생하기 전 검사하여 커넥션 풀에서 이를 내보낼 수 있는 시간
+      data-source-properties:
+        allowMultiQueries: false # 여러 쿼리를 실행시켜줄 수 있는 옵션(only mysql) 한 콜에 여러 번 쿼리를 실행시키는 건 MySQL에서 지양하고 있다.
+        autoReconnect: true
+        cachePrepStmts: true
+        characterEncoding: UTF-8
+        characterSetResults: utf8
+        connectionCollation: utf8mb4_bin
+        prepStmtCacheSize: 250 # This sets the number of prepared statements that the MySQL driver will cache per connection. The default is a conservative 25. We recommend setting this to between 250-500.
+        prepStmtCacheSqlLimit: 2048 # This is the maximum length of a prepared SQL statement that the driver will cache. The MySQL default is 256. In our experience, especially with ORM frameworks like Hibernate, this default is well below the threshold of generated statement lengths. Our recommended setting is 2048.
+        serverTimezone: Asia/Seoul
+        useCompression: false # Default는 false, 전송 데이터가 크면 클수록 서버 간 통신 시간은 줄어든다.
+        useLegacyDatetimeCode: false
+        useTimezone: true
+        useUnicode: true
+        useLocalSessionState: true # 불필요한 autocommit을 남기지 않도록 하는 옵션이다.
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: validate # DB 스키마를 검증해준다. 잘못된 스키마를 출력해주고 애플리케이션은 종료된다.
+    properties:
+      hibernate:
+        show_sql: true
+
+

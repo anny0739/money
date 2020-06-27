@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/money
+    username: root
+    password: money123!
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      auto-commit: true
+      connection-timeout: 5000
+      validation-timeout: 1000
+      minimum-idle: 10
+      maximum-pool-size: 10
+      max-lifetime: 180000
+      idle-timeout: 60000
+      data-source-properties:
+        autoReconnect: true
+        cachePrepStmts: true
+        characterEncoding: UTF-8
+        characterSetResults: utf8
+        connectionCollation: utf8mb4_bin
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        serverTimezone: Asia/Seoul
+        useLegacyDatetimeCode: false
+        useTimezone: true
+        useUnicode: true
+        useLocalSessionState: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: validate # DB 스키마를 검증해준다. 잘못된 스키마를 출력해주고 애플리케이션은 종료된다.
+    properties:
+      hibernate:
+        show_sql: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="10 seconds">
+    <include resource="org/springframework/boot/logging/logback/default.xml"/>
+    <springProperty scope="context" name="LOG_PATH" source="server.logging.path"
+                    defaultValue="/var/log/application.log"/>
+    <springProfile name="local">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>[%date{yyyy-MM-dd
+                    HH:mm:ss.SSS}][%-5level][%thread][%class{0}.%method:%line] %msg%n
+                </pattern>
+            </encoder>
+        </appender>
+
+        <root level="WARN">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="homework" level="DEBUG"/>
+
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.springframework.boot" level="WARN"/>
+        <logger name="org.springframework.web" level="WARN"/>
+        <logger name="org.springframework.data" level="ERROR"/>
+        <logger name="org.springframework.jdbc" level="ERROR"/>
+        <logger name="org.springframework.transaction" level="WARN"/>
+        <logger name="org.springframework.security" level="WARN"/>
+        <logger name="org.springframework.integration" level="WARN"/>
+        <logger name="org.springframework.aop" level="WARN"/>
+        <logger name="org.springframework.boot.test" level="WARN"/>
+        <logger name="org.springframework.test" level="WARN"/>
+
+        <logger name="org.hibernate" level="WARN"/>
+        <logger name="org.hibernate.SQL" level="ERROR"/>
+        <logger name="org.hibernate.type" level="ERROR"/>
+        <logger name="org.hibernate.type.BasicTypeRegistry" level="ERROR"/>
+    </springProfile>
+
+</configuration>
