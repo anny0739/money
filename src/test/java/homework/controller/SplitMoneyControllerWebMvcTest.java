@@ -1,15 +1,8 @@
 package homework.controller;
 
-import homework.datasource.repository.ChatRoomRepository;
-import homework.service.ChatRoomService;
-import homework.service.SplitMoneyService;
-import homework.service.TokenService;
-import homework.service.UserService;
 import homework.testsupport.BaseTest;
-import homework.testsupport.TestConfig;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.hamcrest.Matchers.containsString;
@@ -17,12 +10,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@WebMvcTest(SplitMoneyController.class)
-@ContextConfiguration(classes = {TestConfig.class, ChatRoomService.class, UserService.class,
-        TokenService.class, SplitMoneyService.class, ChatRoomRepository.class})
+@SpringBootTest
 public class SplitMoneyControllerWebMvcTest extends BaseTest {
 
-    private static final String API_URL = "/api/v1/split";
+    private static final String API_URL = "/api/v1/split-money";
 
     @Test
     public void ifHeaderIsEmpty() {
@@ -39,7 +30,7 @@ public class SplitMoneyControllerWebMvcTest extends BaseTest {
                 mockMvc.perform(MockMvcRequestBuilders.post(API_URL)
                         .header(X_ROOM_ID, "1")));
 
-        final String emptyErrorMessage = "Room Id is not valid";
+        final String emptyErrorMessage = "Empty Header is not allowed!";
         assertThat(exception.getMessage(), containsString(emptyErrorMessage));
     }
 
@@ -49,7 +40,7 @@ public class SplitMoneyControllerWebMvcTest extends BaseTest {
                 mockMvc.perform(MockMvcRequestBuilders.post(API_URL)
                         .header(X_ROOM_ID, "1")));
 
-        final String emptyErrorMessage = "Room Id is not valid";
+        final String emptyErrorMessage = "Empty Header is not allowed!";
         assertThat(exception.getMessage(), containsString(emptyErrorMessage));
     }
 
