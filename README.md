@@ -14,6 +14,7 @@
 - Spring Boot 2.2.8.RELEASE
 - Gradle 4+
 - JUnit5
+- main-1
 
 ## Package Structure
 ```
