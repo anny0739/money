@@ -1,5 +1,4 @@
 #!/bin/sh
-
 current_dir=$(cd "$(dirname "$0")"; pwd)
 
 db_container_name=mysqllocal
