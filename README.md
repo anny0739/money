@@ -42,6 +42,7 @@ Main
 ## DB Entity
 ![erd](./erderderd.jpg)
 
+test
 ## HTTP Method
 - GET / POST 만 사용하며 모두 동사를 포함하여 사용한다.
 
