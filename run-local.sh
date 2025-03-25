@@ -5,4 +5,4 @@ db_container_name=mysqllocal
 
 docker build --tag=$db_container_name $current_dir/docker/ && docker run -t -p=3306:3306 --name=db_container_name $db_container_name:latest
 
-
+echo "Container $db_container_name is running"
